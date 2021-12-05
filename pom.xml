@@ -8,8 +8,9 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.ankur</groupId>
-    <artifactId>REST_InventoryService</artifactId>
+    <groupId>com.example.maven-project</groupId>
+    <artifactId>InventoryService</artifactId>
+	<packaging>pom</packaging>
     <version>1.0</version>
     <name>Inventory</name>
     <description>Inventory Management</description>
