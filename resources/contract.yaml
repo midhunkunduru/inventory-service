@@ -1,0 +1,397 @@
+swagger: '2.0'
+info:
+  description: This service provides CRUD operations for Inventory Management.
+  version: 0.0.1
+  title: Inventory Management Microservice
+  termsOfService: 'http://www.4algos.com'
+  contact:
+    name: Ankur Israni
+    url: 'http://www.4algos.com'
+    email: onlyankur@gmail.com
+  license:
+    name: Ankur Israni
+host: 'localhost:7000'
+basePath: /
+tags:
+  - name: Inventory Management
+    description: Inventory Controller
+paths:
+  /inventory/services/add:
+    post:
+      tags:
+        - Inventory Management
+      summary: add
+      description: Adds a new item in the Inventory
+      operationId: add
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryAddItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryAddItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/findById:
+    post:
+      tags:
+        - Inventory Management
+      summary: findById
+      description: Find a single inventory item by id
+      operationId: findById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryFindByIdRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryFindByIdResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/findByName:
+    post:
+      tags:
+        - Inventory Management
+      summary: findByName
+      description: Finds an inventory item by name
+      operationId: findByName
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryFindByNameRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryFindByNameResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/listall:
+    post:
+      tags:
+        - Inventory Management
+      summary: listall
+      description: Get all inventory items
+      operationId: listall
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryListAllResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/remove:
+    post:
+      tags:
+        - Inventory Management
+      summary: remove
+      description: Removes an item from the Inventory
+      operationId: remove
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryRemoveItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryRemoveItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/update:
+    post:
+      tags:
+        - Inventory Management
+      summary: update
+      description: Updates an existing item from the Inventory
+      operationId: update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryUpdateItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryUpdateItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  InventoryAddItemRequest:
+    type: object
+    required:
+      - item
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryAddItemRequest
+  InventoryAddItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryAddItemResponse
+  InventoryFindByIdRequest:
+    type: object
+    required:
+      - itemId
+    properties:
+      itemId:
+        type: integer
+        format: int32
+    title: InventoryFindByIdRequest
+  InventoryFindByIdResponse:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryFindByIdResponse
+  InventoryFindByNameRequest:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+    title: InventoryFindByNameRequest
+  InventoryFindByNameResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryFindByNameResponse
+  InventoryListAllResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+    title: InventoryListAllResponse
+  InventoryRemoveItemRequest:
+    type: object
+    required:
+      - itemId
+    properties:
+      itemId:
+        type: integer
+        format: int32
+    title: InventoryRemoveItemRequest
+  InventoryRemoveItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryRemoveItemResponse
+  InventoryUpdateItemRequest:
+    type: object
+    required:
+      - item
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryUpdateItemRequest
+  InventoryUpdateItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryUpdateItemResponse
+  Item:
+    type: object
+    required:
+      - id
+      - name
+      - price
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      price:
+        type: number
+        format: float
+    title: Item
+  ServiceErrorResponse:
+    type: object
+    properties:
+      applicationErrorCode:
+        type: string
+      applicationErrorMessage:
+        type: string
+      httpStatus:
+        type: string
+        description: description
+        enum:
+          - '200'
+          - '400'
+    title: ServiceErrorResponse

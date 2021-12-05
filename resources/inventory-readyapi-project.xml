@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="e2d79842-5743-4b71-834b-43d4622f7421" created="3.0.0" activeEnvironment="Default environment" name="inventory_rest_springboot" resourceRoot="" updated="3.3.0 2020-06-26T16:21:32Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="1b446c45-3c2d-4506-aabd-43d6f9a47f28" name="Inventory Management Microservice" type="rest_ex" wadlVersion="https://swagger.io/swagger2/specification" definitionUrl="/backup/S_N/java/advanced/spring/boot/workspace/Inventory/resources/contract.yaml" basePath="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>This service provides CRUD operations for Inventory Management.</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="file:/backup/S_N/java/advanced/spring/boot/workspace/Inventory/resources/contract.yaml">
+      <con:part>
+        <con:url>file:/backup/S_N/java/advanced/spring/boot/workspace/Inventory/resources/contract.yaml</con:url>
+        <con:content>swagger: '2.0'
+info:
+  description: This service provides CRUD operations for Inventory Management.
+  version: 0.0.1
+  title: Inventory Management Microservice
+  termsOfService: 'http://www.4algos.com'
+  contact:
+    name: Ankur Israni
+    url: 'http://www.4algos.com'
+    email: onlyankur@gmail.com
+  license:
+    name: Ankur Israni
+host: 'localhost:7000'
+basePath: /
+tags:
+  - name: Inventory Management
+    description: Inventory Controller
+paths:
+  /inventory/services/add:
+    post:
+      tags:
+        - Inventory Management
+      summary: add
+      description: Adds a new item in the Inventory
+      operationId: add
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryAddItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryAddItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/findById:
+    post:
+      tags:
+        - Inventory Management
+      summary: findById
+      description: Find a single inventory item by id
+      operationId: findById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryFindByIdRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryFindByIdResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/findByName:
+    post:
+      tags:
+        - Inventory Management
+      summary: findByName
+      description: Finds an inventory item by name
+      operationId: findByName
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryFindByNameRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryFindByNameResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/listall:
+    post:
+      tags:
+        - Inventory Management
+      summary: listall
+      description: Get all inventory items
+      operationId: listall
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryListAllResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/remove:
+    post:
+      tags:
+        - Inventory Management
+      summary: remove
+      description: Removes an item from the Inventory
+      operationId: remove
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryRemoveItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryRemoveItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /inventory/services/update:
+    post:
+      tags:
+        - Inventory Management
+      summary: update
+      description: Updates an existing item from the Inventory
+      operationId: update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: client-id
+          in: header
+          description: client-id
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/InventoryUpdateItemRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/InventoryUpdateItemResponse'
+        '201':
+          description: Created
+        '400':
+          description: Missing / invalid parameter
+          schema:
+            $ref: '#/definitions/ServiceErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  InventoryAddItemRequest:
+    type: object
+    required:
+      - item
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryAddItemRequest
+  InventoryAddItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryAddItemResponse
+  InventoryFindByIdRequest:
+    type: object
+    required:
+      - itemId
+    properties:
+      itemId:
+        type: integer
+        format: int32
+    title: InventoryFindByIdRequest
+  InventoryFindByIdResponse:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryFindByIdResponse
+  InventoryFindByNameRequest:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+    title: InventoryFindByNameRequest
+  InventoryFindByNameResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryFindByNameResponse
+  InventoryListAllResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+    title: InventoryListAllResponse
+  InventoryRemoveItemRequest:
+    type: object
+    required:
+      - itemId
+    properties:
+      itemId:
+        type: integer
+        format: int32
+    title: InventoryRemoveItemRequest
+  InventoryRemoveItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryRemoveItemResponse
+  InventoryUpdateItemRequest:
+    type: object
+    required:
+      - item
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+    title: InventoryUpdateItemRequest
+  InventoryUpdateItemResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - NO_NAME_MATCH
+          - CANNOT_REMOVE_ITEM_DOES_NOT_EXIST
+          - CANNOT_UPDATE_ITEM_DOES_NOT_EXIST
+          - CANNOT_ADD_ITEM_ALREADY_EXISTS
+    title: InventoryUpdateItemResponse
+  Item:
+    type: object
+    required:
+      - id
+      - name
+      - price
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      price:
+        type: number
+        format: float
+    title: Item
+  ServiceErrorResponse:
+    type: object
+    properties:
+      applicationErrorCode:
+        type: string
+      applicationErrorMessage:
+        type: string
+      httpStatus:
+        type: string
+        description: description
+        enum:
+          - '200'
+          - '400'
+    title: ServiceErrorResponse</con:content>
+        <con:type>https://swagger.io/swagger2/specification</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://localhost:7000</con:endpoint>
+    </con:endpoints>
+    <con:resource name="/inventory/services/add" path="/inventory/services/add" id="a79bbfe2-7ef9-46dd-857c-b9645334f152">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="add" id="e1afccdd-cb85-4357-8700-8a443b7ebde7" method="POST">
+        <con:description>Adds a new item in the Inventory
+add</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "item" : {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  }
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "status" : "SUCCESS"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="8f12ef41-0d5c-429b-9276-94d43de49956" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request>{
+  "item" : {
+    "id" : 99,
+    "name" : "coffe",
+    "price" : 100.99
+  }
+}</con:request>
+          <con:originalUri>http://localhost/inventory/services/add</con:originalUri>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <con:entry key="client-id" value="aa"/>
+          </con:parameters>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/inventory/services/findById" path="/inventory/services/findById" id="8f06b670-53c9-465d-be99-1935a9a7e9bd">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="findById" id="77de6ffd-713e-47e8-9a3b-dbde347674ac" method="POST">
+        <con:description>Find a single inventory item by id
+findById</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "itemId" : 0
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "item" : {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  }
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="feada3f3-f130-45de-bab6-1828d157842f" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request>{
+  "itemId" : 1
+}</con:request>
+          <con:originalUri>http://localhost/inventory/services/findById</con:originalUri>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <con:entry key="client-id" value="aa"/>
+          </con:parameters>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/inventory/services/findByName" path="/inventory/services/findByName" id="f4761015-77ef-43c5-85be-2a180fb526b2">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="findByName" id="9652ddd3-2a49-4eea-b2d9-9c9149b4b19a" method="POST">
+        <con:description>Finds an inventory item by name
+findByName</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "name" : "string"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "items" : [ {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  } ],
+  "status" : "SUCCESS"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="df7d19e5-860b-4226-acc0-502e86cfcd3a" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request>{
+  "name" : "string"
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/inventory/services/listall" path="/inventory/services/listall" id="17edf2f1-7c25-4df1-947f-cb8188c62fa4">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="listall" id="98f49f4f-24be-4358-b6ed-1d0675fb4f93" method="POST">
+        <con:description>Get all inventory items
+listall</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "items" : [ {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  } ]
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="dac201e0-4457-4c8d-ac0d-c04f4d2ff423" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request/>
+          <con:originalUri>http://localhost/inventory/services/listall</con:originalUri>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <con:entry key="client-id" value="aa"/>
+          </con:parameters>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/inventory/services/remove" path="/inventory/services/remove" id="575bd2be-577d-4a18-9e3c-fd2ce6b71abe">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="remove" id="d1be226b-3695-436c-b4d9-e9ebc81d4ed3" method="POST">
+        <con:description>Removes an item from the Inventory
+remove</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "itemId" : 0
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "status" : "SUCCESS"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="9d070d3a-5ec4-4806-81a4-8fc9d1ae7b6e" mediaType="application/json" postQueryString="false">
+          <con:settings/>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request>{
+  "itemId" : 0
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/inventory/services/update" path="/inventory/services/update" id="1ca7715b-fe50-4560-91fc-b01f02b3bfa9">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="update" id="90aefdf4-4b76-4277-8c2c-2d18f8dcf696" method="POST">
+        <con:description>Updates an existing item from the Inventory
+update</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>client-id</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>client-id</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "item" : {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  }
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "status" : "SUCCESS"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:sampleContent>{
+  "applicationErrorCode" : "string",
+  "applicationErrorMessage" : "string",
+  "httpStatus" : "200"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>403</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="1cc92243-779a-4ae8-8ed3-a665ffc72c1e" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://localhost:7000</con:endpoint>
+          <con:request>{
+  "item" : {
+    "id" : 0,
+    "name" : "string",
+    "price" : 1.1
+  }
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="59e268b7-a0b4-43c3-b049-35a03a5256f9" name="Inventory Management">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="7bbef4d0-eac7-4fbb-ba48-4074e16a9e3e" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="add" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="datasource" name="01 - Datasource" id="f4357e66-e4e3-4ccd-a048-e0453f4527f4">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Excel">
+            <con:configuration>
+              <file>/backup/S_N/java/advanced/spring/boot/workspace/Inventory/resources/fixtures.xlsx</file>
+              <worksheet>add</worksheet>
+              <cell>A2</cell>
+              <ignoreEmpty>false</ignoreEmpty>
+              <evaluateFormulas>false</evaluateFormulas>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>id</con:property>
+          <con:property>name</con:property>
+          <con:property>price</con:property>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="02 - add" id="0f2dda05-fa29-470a-8fad-b146e2135ca7">
+        <con:settings/>
+        <con:config service="Inventory Management Microservice" methodName="add" resourcePath="/inventory/services/add" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="02 - add" id="10d079c2-cfe0-45e1-a02f-1754670e0f00" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>http://localhost:7000</con:endpoint>
+            <con:request>{
+  "item" : {
+    "id" : ${01 - Datasource#id},
+    "name" : "${01 - Datasource#name}",
+    "price" : "${01 - Datasource#price}"
+  }
+}</con:request>
+            <con:originalUri>http://localhost/inventory/services/add</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="4738b24e-37f3-46f2-92e9-72560652c3ea" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="75bf7fd2-5e75-4d1c-8ba6-aef43384dd35" name="Response SLA">
+              <con:configuration>
+                <SLA>200</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8265b927-b382-490c-aac8-2e3eb547f854" name="Match content of [status]">
+              <con:configuration>
+                <path>$['status']</path>
+                <content>"SUCCESS"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="client-id" value="aa"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="03 - findById" id="8ba26342-07c5-47e5-bbd4-bf96c77a29c6">
+        <con:settings/>
+        <con:config service="Inventory Management Microservice" methodName="findById" resourcePath="/inventory/services/findById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="03 - findById" id="b8c51d8e-e283-471f-9d85-b82539924acb" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>http://localhost:7000</con:endpoint>
+            <con:request>{
+  "itemId" : ${01 - Datasource#id}
+}</con:request>
+            <con:originalUri>http://localhost/inventory/services/findById</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="4045203f-94dc-456a-8c58-1a98f9a5ef6e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="73132de3-ad3d-4ba2-8f77-f071e952905d" name="Response SLA">
+              <con:configuration>
+                <SLA>200</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="client-id" value="aa"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="04 - remove" id="4b2d5705-5162-4e00-b6f6-d8c0ae9205b7">
+        <con:settings/>
+        <con:config service="Inventory Management Microservice" methodName="remove" resourcePath="/inventory/services/remove" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="04 - remove" id="fe3d539d-72e8-4519-87a5-7875376ed129" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>http://localhost:7000</con:endpoint>
+            <con:request>{
+  "itemId" : ${01 - Datasource#id}
+}</con:request>
+            <con:originalUri>http://localhost/inventory/services/remove</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="3358a1b8-00f6-444d-9430-3622b17bb74e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="1a1c91b9-d72b-4437-9375-42ada5c1d316" name="Response SLA">
+              <con:configuration>
+                <SLA>200</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="5f6263de-0c04-4bab-9c08-4dbfade796a7" name="Match content of [status]">
+              <con:configuration>
+                <path>$['status']</path>
+                <content>"SUCCESS"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="client-id" value="aa"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="05 - Loop" id="8edb5cd8-d00c-484f-92e7-aaccbf091c7e">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>01 - Datasource</dataSourceStep>
+          <targetStep>02 - add</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>f4357e66-e4e3-4ccd-a048-e0453f4527f4</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
